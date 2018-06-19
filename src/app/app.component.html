@@ -1,20 +1,66 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm10 col-md-8 offset-sm-1 offset-md-2">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div id="user-data" ngModelGroup="userData">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username"
+             class="form-control" ngModel name="username"
+             required/>
+          </div>
+          <button class="btn btn-default" type="button"
+                  (click)="suggestUsername()">Suggest an username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email" id="email"
+             class="form-control" ngModel name="email"
+             required email #email="ngModel"/>
+             <div class="invalid-feedback d-block"
+                  *ngIf="email.touched && !email.valid">
+              Please enter a valid email!
+             </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <select id="secret" class="form-control"
+                  [ngModel]="defaultSecretValue"
+                  name="secret">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="answer">Enter your Answer here</label>
+          <textarea id="anwer" class="form-control" rows="3"
+                    name="answer" [(ngModel)]="answer">
+          </textarea>
+        </div>
+        <p>Answer: {{answer}}</p>
+        <div class="form-check form-check-inline"
+          *ngFor="let gender of genders">
+          <input class="form-check-input" type="radio"
+                  id="gender" [value]="gender" ngModel
+                  name="gender"/>
+          <label for="gender" class="form-check-label">{{gender}}</label>
+        </div>
+        <div class="form-row">
+            <button class="btn btn-primary form-row" type="submit"
+            [disabled]="!f.valid">Submit</button>
+        </div>      
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="isSubmitted">
+    <div class="col-md-10">
+      <h3>Your Data</h3>
+      <p>Username: {{user.name}}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Secret Question: {{user.secret.question}}</p>
+      <p>Answer: {{user.secret.answer}}</p>
+      <p>Gender: {{user.gender}}</p>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
