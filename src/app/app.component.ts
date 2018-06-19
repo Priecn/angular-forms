@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+//import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('f') userForm: NgForm;
+  /* @ViewChild('f') userForm: NgForm;
   defaultSecretValue: string = 'pet';
   answer: string;
   genders = ['Male', 'Female'];
@@ -21,9 +21,9 @@ export class AppComponent {
       answer: ''
     }
   }
-  /* onSubmit(form: HTMLFormElement) {
+  onSubmit(form: HTMLFormElement) {
     console.log(form);
-  } */
+  }
 
   suggestUsername(){
     this.userForm.form.patchValue({
@@ -32,7 +32,7 @@ export class AppComponent {
       }
     });
 
-    /* this.userForm.setValue({
+    this.userForm.setValue({
       userData: {
         username: 'suggested name',
         email: ''
@@ -40,7 +40,7 @@ export class AppComponent {
       secret: '',
       answer: '',
       gender: 'Male'
-    }); */
+    });
   }
 
   onSubmit(form: NgForm) {
@@ -52,5 +52,5 @@ export class AppComponent {
     this.user.gender = form.value.gender;
     this.isSubmitted = true;
     form.reset();
-  }
+  } */
 }
